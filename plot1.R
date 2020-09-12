@@ -1,11 +1,15 @@
 ##Plot1
 
 ## reading the data
-values <- read.csv("C:/Personal/Coursera/datasciences/exploratory data analysis/household_power_consumption_new.csv");
+activity_url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00235/household_power_consumption.zip";
+temp <- tempfile();
+download.file(activity_url, temp);
+values<-read.table(unz(temp,"household_power_consumption.txt"));
+unlink(temp);
 
 
 ##extractinbg the data for feb1 and 2
-newvalues<-subset(values,ï..Date=="01-02-2007"|ï..Date=="02-02-2007");
+newvalues<-subset(values,Ã¯..Date=="01-02-2007"|Ã¯..Date=="02-02-2007");
 
 
 ## checking if data is as per need
@@ -18,9 +22,9 @@ library("dplyr");
 
 
 ##setting datatype correctly
-newvalues$ï..Date<-as.Date(newvalues$ï..Date);
+newvalues$Ã¯..Date<-as.Date(newvalues$Ã¯..Date);
 newvalues$Time<-as.Date(newvalues$Time);
-newvalues$ï..Date<- as.Date(newvalues$ï..Date, format="%d/%m/%yyyy");
+newvalues$Ã¯..Date<- as.Date(newvalues$Ã¯..Date, format="%d/%m/%yyyy");
 newvalues$Time<-strptime(newvalues$Time,format = "%H:%M:%S");
 newvalues$Sub_metering_1<-as.numeric(newvalues$Sub_metering_1);
 newvalues$Sub_metering_2<-as.numeric(newvalues$Sub_metering_2);
